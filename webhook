@@ -43,11 +43,11 @@ local Moon = {
     CodeServer = 'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,'..'\''..tostring(game.JobId)..'\''..')'
 
 		local Embed = {
-			 ["username"] = "AfxcaxiFullmoon",
-			 ["avatar_url"] = "https://github.com/afxcaxi/Logo/blob/main/sun.jpg",
+			 ["username"] = "Pld Fullmoon",
+			 ["avatar_url"] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9a7-yNuUffSg-I4kIUeBwEHyxEeS_WoUOnw&usqp=CAU",
 			 ["embeds"] = {
 				{
-					["title"] = "AfxcaxiRoblox Webhook",
+					["title"] = "Pld Webhook",
 					["color"] = tonumber(00000000),
 					["type"] = "Really VIP",
 					["fields"] =  {
@@ -73,7 +73,7 @@ local Moon = {
                         }
 					},
                     ["thumbnail"] = {
-                    ["url"] = "https://github.com/afxcaxi/Logo/blob/main/sun.jpg",
+                    ["url"] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9a7-yNuUffSg-I4kIUeBwEHyxEeS_WoUOnw&usqp=CAU",
                     },
 					["footer"] = {
 						["text"] = os.date("%A".." // ".."%d".." ".."%B".." ".."%Y".." // ".."%X").." \104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\103\103\47\110\88\110\97\81\68\87\74",
