@@ -1,0 +1,89 @@
+LinkHook = "https://discord.com/api/webhooks/1203596304630943794/SxCxXTiNizwgBrHOhsLfYWpWYItwFGVqkG0dfgMFSzkN_Hr8hiqHXV10HYe0RHH-YxiH"
+
+local Moon = {
+['8'] = "http://www.roblox.com/asset/?id=9709149431", -- 🌕
+['7'] = "http://www.roblox.com/asset/?id=9709149052", -- 🌖
+['6'] = "http://www.roblox.com/asset/?id=9709143733", -- 🌗
+['5'] = "http://www.roblox.com/asset/?id=9709150401", -- 🌘
+['4'] = "http://www.roblox.com/asset/?id=9709135895",  -- 🌑
+['3'] = "http://www.roblox.com/asset/?id=9709139597", -- 🌒
+['2'] = "http://www.roblox.com/asset/?id=9709150086", -- 🌓
+['1'] = "http://www.roblox.com/asset/?id=9709149680", -- 🌔
+};
+
+    if game:GetService("Lighting").Sky.MoonTextureId == Moon['1'] then
+        MoonIcon = '🌔'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['2'] then
+        MoonIcon = '🌓'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['3'] then
+        MoonIcon = '🌒'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['4'] then
+        MoonIcon = '🌑'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['5'] then
+        MoonIcon = '🌘'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['6'] then
+        MoonIcon = '🌗'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['7'] then
+        MoonIcon = '🌖'
+    elseif game:GetService("Lighting").Sky.MoonTextureId == Moon['8'] then
+        MoonIcon = '🌕'
+    end
+
+    for i,v in pairs(Moon) do
+        if game:GetService("Lighting").Sky.MoonTextureId == v then
+            MoonPercent = i / 8 * 100
+        end
+    end
+    
+    for i,v in pairs(game.Players:GetPlayers()) do
+        PlayersMin = i
+    end
+
+    MoonMessage = '```'..tostring(MoonPercent..'%'..' : '..MoonIcon)..'```'
+    CodeServer = 'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,'..'\''..tostring(game.JobId)..'\''..')'
+
+		local Embed = {
+			 ["username"] = "AfxcaxiFullmoon",
+			 ["avatar_url"] = "https://github.com/afxcaxi/Logo/blob/main/sun.jpg",
+			 ["embeds"] = {
+				{
+					["title"] = "AfxcaxiRoblox Webhook",
+					["color"] = tonumber(00000000),
+					["type"] = "Really VIP",
+					["fields"] =  {
+						{
+							["name"] = "Players",
+							["value"] = '```'..tostring(PlayersMin)..'/12```',
+							["inline"] = true
+						},
+                        {
+							["name"] = "Job Id",
+							["value"] = '```'..tostring(game.JobId)..'```',
+							["inline"] = true
+                        },
+                        {
+							["name"] = "Code",
+							["value"] = '```'..CodeServer..'```',
+							["inline"] = true
+                        },
+                        {
+							["name"] = "Moon",
+							["value"] = ''..MoonMessage..'',
+							["inline"] = true
+                        }
+					},
+                    ["thumbnail"] = {
+                    ["url"] = "https://github.com/afxcaxi/Logo/blob/main/sun.jpg",
+                    },
+					["footer"] = {
+						["text"] = os.date("%A".." // ".."%d".." ".."%B".." ".."%Y".." // ".."%X").." \104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\103\103\47\110\88\110\97\81\68\87\74",
+                        ["icon_url"] = "https://github.com/afxcaxi/Logo/blob/main/sun.jpg"
+                    }
+				}
+			},
+		}
+		local Data = game:GetService("HttpService"):JSONEncode(Embed)
+		local Head = {["content-type"] = "application/json"}
+		Send = http_request or request or HttpPost or syn.request
+		local sendhook = {Url = LinkHook, Body = Data, Method = "POST", Headers = Head}
+		Send(sendhook)
