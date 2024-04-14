@@ -10,8 +10,31 @@ local function fly()
     end
 end
 
+-- Tạo UI
+local flyButton = Instance.new("TextButton")
+flyButton.Text = "Fly"
+flyButton.Position = UDim2.new(0, 10, 0, 10)
+flyButton.Size = UDim2.new(0, 100, 0, 50)
+flyButton.Parent = game.Players.LocalPlayer.PlayerGui
+
+-- Lắng nghe sự kiện khi nút được nhấn
+flyButton.MouseButton1Click:Connect(function()
+    fly()
+    if isFlying then
+        flyButton.Text = "Stop Flying"
+    else
+        flyButton.Text = "Fly"
+    end
+end)
+
+-- Lắng nghe sự kiện khi phím được nhấn
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.F then
         fly()
+        if isFlying then
+            flyButton.Text = "Stop Flying"
+        else
+            flyButton.Text = "Fly"
+        end
     end
 end)
