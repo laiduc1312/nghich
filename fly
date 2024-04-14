@@ -1,55 +1,17 @@
--- Tạo một biến để kiểm soát trạng thái fly
 local isFlying = false
 
--- Tạo UI
-local flyUI = Instance.new("ScreenGui")
-flyUI.Name = "PublineDEV"
-flyUI.Parent = game.Players.LocalPlayer.PlayerGui
-
--- Màu chủ đạo
-local mainColor = Color3.fromRGB(148, 0, 211)  -- Tím
-
--- Tạo nền UI
-local background = Instance.new("Frame")
-background.BackgroundColor3 = mainColor
-background.BackgroundTransparency = 0.5
-background.BorderSizePixel = 0
-background.Size = UDim2.new(0, 200, 0, 100)
-background.Position = UDim2.new(0.5, -100, 0.3, -50)
-background.Parent = flyUI
-
--- Tạo tiêu đề
-local title = Instance.new("TextLabel")
-title.Text = "Fly Script"
-title.TextColor3 = Color3.new(1, 1, 1) -- Trắng
-title.Font = Enum.Font.GothamBold
-title.TextSize = 20
-title.Size = UDim2.new(1, 0, 0.2, 0)
-title.Position = UDim2.new(0, 0, 0, 0)
-title.BackgroundTransparency = 1
-title.Parent = background
-
--- Tạo nút fly
-local flyButton = Instance.new("TextButton")
-flyButton.Text = "Fly"
-flyButton.TextColor3 = Color3.new(1, 1, 1) -- Trắng
-flyButton.Font = Enum.Font.GothamBold
-flyButton.BackgroundTransparency = 1
-flyButton.Size = UDim2.new(0.5, 0, 0.4, 0)
-flyButton.Position = UDim2.new(0.25, 0, 0.3, 0)
-flyButton.Parent = background
-
--- Lắng nghe sự kiện khi nút được nhấn
-flyButton.MouseButton1Click:Connect(function()
-    -- Đảo ngược trạng thái fly
+local function fly()
     isFlying = not isFlying
-    
-    -- Nếu đang fly, thì thêm lực đẩy để nhân vật bay lên
+    game.Players.LocalPlayer.Character.Humanoid.PlatformStand = isFlying
     if isFlying then
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-        game.Players.LocalPlayer.Character.Humanoid:Move(Vector3.new(0,100,0), true)
-        flyButton.Text = "Stop Flying"
-    else
-        flyButton.Text = "Fly"
+        game:GetService("UserInputService").JumpRequest:Connect(function()
+            game.Players.LocalPlayer.Character:Move(Vector3.new(0, 100, 0), true)
+        end)
+    end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.F then
+        fly()
     end
 end)
